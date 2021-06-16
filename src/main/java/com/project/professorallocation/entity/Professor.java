@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Professor {
 	
@@ -26,6 +29,7 @@ public class Professor {
 	@ManyToOne(optional = false)
 	private Department department;
 	
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "professor")
 	private List<Allocation> allocations;
 

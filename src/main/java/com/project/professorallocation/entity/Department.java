@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Department {
 	
@@ -19,6 +22,7 @@ public class Department {
 	@Column(nullable = false, unique = true, length = 50)
 	private String name;
 	
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "department")
 	private List<Professor> professor;
 
