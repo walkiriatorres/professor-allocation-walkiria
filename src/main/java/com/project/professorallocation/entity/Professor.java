@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Professor {
 	
@@ -26,24 +28,25 @@ public class Professor {
 	@Column(nullable = false, unique = true, length = 14)
 	private String cpf;
 	
+	@JsonIgnoreProperties({"listprofessors"})
 	@ManyToOne(optional = false)
 	private Department department;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "professor")
-	private List<Allocation> allocations;
+	private List<Allocation> listAllocations;
 
 	public Professor() {
 		super();
 	}
 	
-	public Professor(Long id, String name, String cpf, Department departament, List<Allocation> allocations) {
+	public Professor(Long id, String name, String cpf, Department department, List<Allocation> listallocations) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
-		this.department = departament;
-		this.allocations = allocations;
+		this.department = department;
+		this.listAllocations = listallocations;
 	}
 
 	public Long getId() {
@@ -70,20 +73,20 @@ public class Professor {
 		this.cpf = cpf;
 	}
 
-	public Department getDepartament() {
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartament(Department departament) {
-		this.department = departament;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
-	public List<Allocation> getAllocations() {
-		return allocations;
+	public List<Allocation> getListAllocations() {
+		return listAllocations;
 	}
 
-	public void setAllocations(List<Allocation> allocations) {
-		this.allocations = allocations;
+	public void setListAllocations(List<Allocation> listAllocations) {
+		this.listAllocations = listAllocations;
 	}
 
 }

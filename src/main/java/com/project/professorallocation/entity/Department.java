@@ -24,17 +24,17 @@ public class Department {
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "department")
-	private List<Professor> professor;
+	private List<Professor> listprofessors;
 
 	public Department() {
 		super();
 	}
 	
-	public Department(Long id, String name, List<Professor> professor) {
+	public Department(Long id, String name, List<Professor> listProfessors) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.professor = professor;
+		this.listprofessors = listProfessors;
 	}
 
 	public Long getId() {
@@ -53,12 +53,12 @@ public class Department {
 		this.name = name;
 	}
 
-	public List<Professor> getProfessor() {
-		return professor;
+	public List<Professor> getListProfessors() {
+		return listprofessors;
 	}
 
-	public void setProfessor(List<Professor> professor) {
-		this.professor = professor;
+	public void setListProfessors(List<Professor> listProfessors) {
+		this.listprofessors = listProfessors;
 	}
 	
 }

@@ -29,20 +29,20 @@ public class CourseRepositoryTest {
 	@Test
 	void testCreate () {
 		Course course = new Course();
-		course.setId(1L);
+		course.setId(null);
 		course.setName("Recodev5");
-		course.setAllocations(null);
+		course.setListAllocations(null);
 		
-		courseRepository.save(course);
+		course = courseRepository.save(course);
 		
 		System.out.println(course);
 	}
 	
 	@Test
 	void testCreate2 () {
-		Course course2 = new Course(1L, "Recodev5", null);
+		Course course2 = new Course(null, "Recodev5", null);
 		
-		courseRepository.save(course2);
+		course2 = courseRepository.save(course2);
 		
 		System.out.println(course2);
 		
@@ -54,11 +54,11 @@ public class CourseRepositoryTest {
 		Course course3 = new Course();
 		course3.setId(1L);
 		course3.setName("Recodev6");
-		course3.setAllocations(null);
+		course3.setListAllocations(null);
 		
 		if(courseRepository.existsById(course3.getId()) == true)
 		{
-		courseRepository.save(course3);
+		course3 = courseRepository.save(course3);
 		}
 		
 		System.out.println(course3);
@@ -70,16 +70,22 @@ public class CourseRepositoryTest {
 		List<Course> courses = courseRepository.findAll();
 		
 		System.out.println(courses);
+		
+		courses.forEach(System.out::println);
+		
+		for (Course item : courses) {
+			System.out.println(item);
+		}		
 	}
 	
 	@Test
 	void testFindById () {
 		
-		Long id = 10L;
+		Long id = 10L;	
 		
-		Optional<Course> optional = courseRepository.findById(id);
+		Course course = courseRepository.findById(id).orElse(null);
 		
-		Course course = optional.orElse(null);	
+		System.out.println(course);
 	}
 	
 	@Test

@@ -24,22 +24,30 @@ public class ProfessorRepositoryTest {
 	@Autowired
 	private ProfessorRepository professorRepository;
 	
+	@Autowired
+	private DepartmentRepository departmentRepository;
+	
 
 	@Test
 	void testCreate () {
 		//Create setando (CRUD)
 		Department department = new Department();
-		department.setId(1L);
+		department.setId(2L);
 		
 		Professor professor = new Professor();
-		professor.setId(1L);
-		professor.setName("thiago");
-		professor.setCpf("111.111.111-11");
-		professor.setDepartament(department);
+		professor.setName("rafael");
+		professor.setCpf("234.567.890-12");
+		professor.setDepartment(department);
+		professor.setListAllocations(null);
 		
-		professorRepository.save(professor);
+		professor.setId(null);
+		Professor newProfessor = professorRepository.save(professor);
+		Long departmentId = newProfessor.getDepartment().getId();
 		
-		System.out.println(professor);
+		Department newDepartment = departmentRepository.findById(departmentId).orElse(null);
+		newProfessor.setDepartment(newDepartment);
+		
+		System.out.println(newProfessor);
 	}
 	@Test
 	void testCreate2 () {
@@ -47,9 +55,9 @@ public class ProfessorRepositoryTest {
 		Department department = new Department();
 		department.setId(1L);
 		
-		Professor professor2 = new Professor(1L, "tiago", "111.111.111-11", department, null);
+		Professor professor2 = new Professor(null, "tiago", "111.111.111-11", department, null);
 		
-		professorRepository.save(professor2);
+		professor2 = professorRepository.save(professor2);
 		
 		System.out.println(professor2);
 	}
@@ -63,12 +71,12 @@ public class ProfessorRepositoryTest {
 		professor3.setId(1L);
 		professor3.setName("thiago");
 		professor3.setCpf("111.111.111-11");
-		professor3.setDepartament(department);
-		professor3.setAllocations(null);
+		professor3.setDepartment(department);
+		professor3.setListAllocations(null);
 		
 		if(professorRepository.existsById(professor3.getId()) == true)
 		{
-		professorRepository.save(professor3);
+		professor3 = professorRepository.save(professor3);
 		}		
 			
 		/* OU
@@ -86,7 +94,9 @@ public class ProfessorRepositoryTest {
 		//FindAll READ (CRUD)
 		List<Professor> professors = professorRepository.findAll();
 		
-		System.out.println(professors);
+		for (Professor item : professors) {
+			System.out.println(item);
+		}
 	}
 	
 	@Test
@@ -94,9 +104,9 @@ public class ProfessorRepositoryTest {
 		//FindByID READ (CRUD)
 		Long id = 10L;
 		
-		Optional<Professor> optional = professorRepository.findById(id);
+		Professor professor = professorRepository.findById(id).orElse(null);
 		
-		Professor p = optional.orElse(null);
+		System.out.println(professor);
 	}
 	
 	@Test
@@ -105,6 +115,7 @@ public class ProfessorRepositoryTest {
 		Long id = 2L;
 		
 		professorRepository.deleteById(id);
+	
 	}
 	
 	@Test

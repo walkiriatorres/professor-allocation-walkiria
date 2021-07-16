@@ -24,17 +24,17 @@ public class Course {
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "course")
-	private List<Allocation> allocations;
+	private List<Allocation> listAllocations;
 
 	public Course() {
 		super();
 	}
 	
-	public Course(Long id, String name, List<Allocation> allocations) {
+	public Course(Long id, String name, List<Allocation> listAllocations) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.allocations = allocations;
+		this.listAllocations = listAllocations;
 	}
 
 	public Long getId() {
@@ -53,12 +53,12 @@ public class Course {
 		this.name = name;
 	}
 
-	public List<Allocation> getAllocations() {
-		return allocations;
+	public List<Allocation> getListAllocations() {
+		return listAllocations;
 	}
 
-	public void setAllocations(List<Allocation> allocations) {
-		this.allocations = allocations;
+	public void setListAllocations(List<Allocation> listAllocations) {
+		this.listAllocations = listAllocations;
 	}
 	
 	

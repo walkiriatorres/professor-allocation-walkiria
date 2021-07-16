@@ -28,18 +28,20 @@ public class DepartmentRepositoryTest {
 	@Test
 	void testCreate () {
 		Department department = new Department();
-		department.setId(1L);
+		department.setId(null);
+		department.setName("DepartTecnologia");
+		department.setListProfessors(null);
 		
-		departmentRepository.save(department);
+		department = departmentRepository.save(department);
 		
 		System.out.println(department);
 	}
 	
 	@Test
 	void testCreate2 () {
-		Department department2 = new Department(1L, "DepartTecnologia", null);
+		Department department2 = new Department(null, "DepartTecnologia", null);
 		
-		departmentRepository.save(department2);
+		department2 = departmentRepository.save(department2);
 		
 		System.out.println(department2);
 		
@@ -51,11 +53,11 @@ public class DepartmentRepositoryTest {
 		Department department3 = new Department();
 		department3.setId(1L);
 		department3.setName("DepartTecnologia");
-		department3.setProfessor(null);
+		department3.setListProfessors(null);
 		
 		if(departmentRepository.existsById(department3.getId()) == true)
 		{
-		departmentRepository.save(department3);
+			department3 = departmentRepository.save(department3);
 		}
 		
 		System.out.println(department3);
@@ -66,7 +68,9 @@ public class DepartmentRepositoryTest {
 		
 		List<Department> departments = departmentRepository.findAll();
 		
-		System.out.println(departments);
+		for (Department item : departments) {
+			System.out.println(item);
+		}
 	}
 	
 	@Test
@@ -74,9 +78,9 @@ public class DepartmentRepositoryTest {
 		
 		Long id = 10L;
 		
-		Optional<Department> optional = departmentRepository.findById(id);
+		Department department = departmentRepository.findById(id).orElse(null);
 		
-		Department depto = optional.orElse(null);	
+		System.out.println(department);
 	}
 	
 	@Test
