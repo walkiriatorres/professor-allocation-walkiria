@@ -1,11 +1,11 @@
-package com.project.professorallocation.service;
+package com.project.professor.allocation.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.project.professorallocation.entity.Department;
-import com.project.professorallocation.repository.DepartmentRepository;
+import com.project.professor.allocation.entity.Department;
+import com.project.professor.allocation.repository.DepartmentRepository;
 
 @Service
 public class DepartmentService {
@@ -42,7 +42,7 @@ public class DepartmentService {
 			}
 	}
 	
-	public Department save (Department department) {
+	public Department create (Department department) {
 		department.setId(null);
 		Department newDepartment = saveInternal(department);		
 		return newDepartment;

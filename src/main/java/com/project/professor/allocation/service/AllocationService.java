@@ -1,11 +1,11 @@
-package com.project.professorallocation.service;
+package com.project.professor.allocation.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.project.professorallocation.entity.*;
-import com.project.professorallocation.repository.AllocationRepository;
+import com.project.professor.allocation.entity.*;
+import com.project.professor.allocation.repository.AllocationRepository;
 
 @Service
 public class AllocationService {
@@ -60,7 +60,7 @@ public class AllocationService {
 		}
 	}
 
-	public Allocation save(Allocation allocation) {
+	public Allocation create(Allocation allocation) {
 		allocation.setId(null);
 		Allocation newAllocation = saveInternal(allocation);
 		return newAllocation;

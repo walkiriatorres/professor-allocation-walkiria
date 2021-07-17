@@ -1,11 +1,11 @@
-package com.project.professorallocation.repository;
+package com.project.professor.allocation.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.professorallocation.entity.Allocation;
+import com.project.professor.allocation.entity.Allocation;
 
 @Repository
 public interface AllocationRepository extends JpaRepository<Allocation, Long>{

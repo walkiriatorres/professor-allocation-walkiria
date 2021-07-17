@@ -1,4 +1,4 @@
-package com.project.professorallocation.entity;
+package com.project.professor.allocation.entity;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class Professor {
 	@Column(nullable = false, unique = true, length = 14)
 	private String cpf;
 	
-	@JsonIgnoreProperties({"listprofessors"})
+	@JsonIgnoreProperties({"listProfessors"})
 	@ManyToOne(optional = false)
 	private Department department;
 	

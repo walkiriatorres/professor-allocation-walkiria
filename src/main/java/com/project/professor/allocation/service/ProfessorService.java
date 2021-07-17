@@ -1,13 +1,13 @@
-package com.project.professorallocation.service;
+package com.project.professor.allocation.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.project.professorallocation.entity.Department;
-import com.project.professorallocation.entity.Professor;
-import com.project.professorallocation.repository.DepartmentRepository;
-import com.project.professorallocation.repository.ProfessorRepository;
+import com.project.professor.allocation.entity.Department;
+import com.project.professor.allocation.entity.Professor;
+import com.project.professor.allocation.repository.DepartmentRepository;
+import com.project.professor.allocation.repository.ProfessorRepository;
 
 @Service
 public class ProfessorService {
@@ -51,7 +51,7 @@ public class ProfessorService {
 		return professors;	
 	}
 	
-	public Professor save(Professor professor) {
+	public Professor create(Professor professor) {
 		professor.setId(null); //garante que será criado um novo professor
 		Professor newProfessor = saveInternal(professor);
 		return newProfessor;

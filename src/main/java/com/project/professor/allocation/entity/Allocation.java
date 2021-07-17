@@ -1,4 +1,4 @@
-package com.project.professorallocation.entity;
+package com.project.professor.allocation.entity;
 
 import java.time.DayOfWeek;
 import java.util.Date;
@@ -14,6 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Allocation {
 	
@@ -25,17 +33,25 @@ public class Allocation {
 	@Enumerated(value = EnumType.STRING)
 	private DayOfWeek dayofweek;
 	
+	@JsonFormat(pattern = "HH:mmZ") // Exemplo: 14:00-0300
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using = DateDeserializer.class)
 	@Column(nullable = false)
 	@Temporal(value = TemporalType.TIME)
 	private Date start;
 	
+	@JsonFormat(pattern = "HH:mmZ") // Exemplo: 14:00-0300
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using = DateDeserializer.class)
 	@Column(nullable = false)
 	@Temporal(value = TemporalType.TIME)
 	private Date end;
 	
+	@JsonIgnoreProperties({"listAllocations"})
 	@ManyToOne(optional = false)
 	private Professor professor;
 	
+	@JsonIgnoreProperties({"listAllocations"})
 	@ManyToOne(optional = false)
 	private Course course;
 

@@ -1,4 +1,4 @@
-package com.project.professorallocation.entity;
+package com.project.professor.allocation.entity;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-public class Course {
+public class Department {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,18 +23,18 @@ public class Course {
 	private String name;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@OneToMany(mappedBy = "course")
-	private List<Allocation> listAllocations;
+	@OneToMany(mappedBy = "department")
+	private List<Professor> listProfessors;
 
-	public Course() {
+	public Department() {
 		super();
 	}
 	
-	public Course(Long id, String name, List<Allocation> listAllocations) {
+	public Department(Long id, String name, List<Professor> listProfessors) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.listAllocations = listAllocations;
+		this.listProfessors = listProfessors;
 	}
 
 	public Long getId() {
@@ -53,14 +53,12 @@ public class Course {
 		this.name = name;
 	}
 
-	public List<Allocation> getListAllocations() {
-		return listAllocations;
+	public List<Professor> getListProfessors() {
+		return listProfessors;
 	}
 
-	public void setListAllocations(List<Allocation> listAllocations) {
-		this.listAllocations = listAllocations;
+	public void setListProfessors(List<Professor> listProfessors) {
+		this.listProfessors = listProfessors;
 	}
-	
-	
 	
 }
