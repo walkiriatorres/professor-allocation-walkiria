@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.professor.allocation.entity.Allocation;
-import com.project.professor.allocation.entity.Professor;
 import com.project.professor.allocation.service.AllocationService;
-import com.project.professor.allocation.service.CourseService;
-import com.project.professor.allocation.service.ProfessorService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
