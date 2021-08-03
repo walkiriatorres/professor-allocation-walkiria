@@ -103,7 +103,7 @@ public class AllocationService {
 
         for (Allocation currentAllocation : currentAllocations) {
         	checkCollision = hasCollision(currentAllocation, newAllocation);
-            if (checkCollision = true) {
+            if (checkCollision == true) {
                 break;
             }
         }
