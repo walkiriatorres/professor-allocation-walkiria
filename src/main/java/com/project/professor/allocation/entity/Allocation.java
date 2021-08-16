@@ -35,7 +35,7 @@ public class Allocation {
 	@Enumerated(value = EnumType.STRING)
 	private DayOfWeek dayofweek;
 	
-	@ApiModelProperty(example = "HH:mmZ")
+	
 	@JsonFormat(pattern = "HH:mmZ") // Exemplo: 14:00-0300
 	@JsonSerialize(using = DateSerializer.class)
 	@JsonDeserialize(using = DateDeserializer.class)
@@ -43,7 +43,7 @@ public class Allocation {
 	@Temporal(value = TemporalType.TIME)
 	private Date start;
 	
-	@ApiModelProperty(example = "HH:mmZ")
+	
 	@JsonFormat(pattern = "HH:mmZ") // Exemplo: 14:00-0300
 	@JsonSerialize(using = DateSerializer.class)
 	@JsonDeserialize(using = DateDeserializer.class)
