@@ -31,7 +31,7 @@ public class AllocationController {
 	
 	public AllocationController(AllocationService allocationService) {
 		super();
-		this.allocationService = allocationService;
+		this.allocationService = allocationService;		
 	}
 	
 	@ApiResponse(code = 200, message = "OK")
