@@ -79,7 +79,7 @@ public class AllocationService {
 	}
 
 	private Allocation saveInternal(Allocation allocation) {
-        if (!checkCollision(allocation)) {
+        if (!checkValidate(allocation)) {
             allocation = allocationRepository.save(allocation);
 
             Professor professor = allocation.getProfessor();
@@ -96,23 +96,35 @@ public class AllocationService {
         }		 
 	}
 
-    boolean checkCollision(Allocation newAllocation) {
-        boolean checkCollision = false;
+    boolean checkValidate(Allocation newAllocation) {
+        boolean checkValidate = false;
 
         List<Allocation> currentAllocations = allocationRepository.findByProfessorId(newAllocation.getProfessor().getId());
-
-        for (Allocation currentAllocation : currentAllocations) {
-        	checkCollision = hasCollision(currentAllocation, newAllocation);
-            if (checkCollision == true) {
-                break;
+        
+        if (newAllocation.getStart().compareTo(newAllocation.getEnd()) > 0){
+        	for (Allocation currentAllocation : currentAllocations) {
+            	checkValidate = hasCollision(currentAllocation, newAllocation);
+                if (checkValidate == true) {
+                    break;
+                }
             }
         }
 
-        return checkCollision;
+       
+        return checkValidate;
     }
 
     private boolean hasCollision(Allocation currentAllocation, Allocation newAllocation) {
-    	boolean hasCollision = false;
+    	boolean hasCollision = false; 
+    	boolean idTeste = !currentAllocation.getId().equals(newAllocation.getId());
+    	boolean dayTeste = currentAllocation.getDayofweek() == newAllocation.getDayofweek();
+    	int comparacao1 = currentAllocation.getStart().compareTo(newAllocation.getEnd());
+    	int comparacao2 = newAllocation.getStart().compareTo(currentAllocation.getEnd());
+    	
+    			
+    	/*dayofweek retorna objeto, tem 
+    	== compara referencia de memoria */
+    	  	
     	if (!currentAllocation.getId().equals(newAllocation.getId())
     			&& currentAllocation.getDayofweek() == newAllocation.getDayofweek()
     			&& currentAllocation.getStart().compareTo(newAllocation.getEnd()) < 0
