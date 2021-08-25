@@ -79,7 +79,7 @@ public class AllocationService {
 	}
 
 	private Allocation saveInternal(Allocation allocation) {
-        if (!checkValidate(allocation)) {
+        if (!checkCollision(allocation)) {
             allocation = allocationRepository.save(allocation);
 
             Professor professor = allocation.getProfessor();
@@ -96,22 +96,19 @@ public class AllocationService {
         }		 
 	}
 
-    boolean checkValidate(Allocation newAllocation) {
-        boolean checkValidate = false;
+    boolean checkCollision(Allocation newAllocation) {
+        boolean checkCollision = false;
 
         List<Allocation> currentAllocations = allocationRepository.findByProfessorId(newAllocation.getProfessor().getId());
         
-        if (newAllocation.getStart().compareTo(newAllocation.getEnd()) > 0){
-        	for (Allocation currentAllocation : currentAllocations) {
-            	checkValidate = hasCollision(currentAllocation, newAllocation);
-                if (checkValidate == true) {
-                    break;
-                }
-            }
-        }
-
-       
-        return checkValidate;
+        for (Allocation currentAllocation : currentAllocations) {
+        	checkCollision = hasCollision(currentAllocation, newAllocation);
+            if (checkCollision == true) {
+            	break;
+            	}
+            } 
+        
+        return checkCollision;
     }
 
     private boolean hasCollision(Allocation currentAllocation, Allocation newAllocation) {
