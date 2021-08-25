@@ -125,8 +125,7 @@ public class AllocationService {
     	if (!currentAllocation.getId().equals(newAllocation.getId())
     			&& currentAllocation.getDayofweek() == newAllocation.getDayofweek()
     			&& currentAllocation.getStart().compareTo(newAllocation.getEnd()) < 0
-    			&& newAllocation.getStart().compareTo(currentAllocation.getEnd()) < 0
-    			&& newAllocation.getStart().compareTo(newAllocation.getEnd()) >= 0) {
+    			&& newAllocation.getStart().compareTo(currentAllocation.getEnd()) < 0) {
 	    	hasCollision = true;   			 
     	}
     	return hasCollision;
