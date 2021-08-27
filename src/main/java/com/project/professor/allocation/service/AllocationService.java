@@ -74,7 +74,6 @@ public class AllocationService {
 			return newAllocation;
 		} else {
 			return null;
-			/*retornar nulo, caso id não exista, senão o método update fará um create.*/
 		}
 	}
 
@@ -113,15 +112,7 @@ public class AllocationService {
 
     private boolean hasCollision(Allocation currentAllocation, Allocation newAllocation) {
     	boolean hasCollision = false; 
-    	boolean idTeste = !currentAllocation.getId().equals(newAllocation.getId());
-    	boolean dayTeste = currentAllocation.getDayofweek() == newAllocation.getDayofweek();
-    	int comparacao1 = currentAllocation.getStart().compareTo(newAllocation.getEnd());
-    	int comparacao2 = newAllocation.getStart().compareTo(currentAllocation.getEnd());
     	
-    			
-    	/*dayofweek retorna objeto, tem 
-    	== compara referencia de memoria */
-    	  	
     	if (!currentAllocation.getId().equals(newAllocation.getId())
     			&& currentAllocation.getDayofweek() == newAllocation.getDayofweek()
     			&& currentAllocation.getStart().compareTo(newAllocation.getEnd()) < 0
